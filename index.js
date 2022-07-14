@@ -5,7 +5,7 @@ var min = 0;
 var sec = 0;
 var stoptime = true;
 var current,para,element;
-var ct = 0;
+
 var i =1;
 var check = 0;
 //button
@@ -17,8 +17,7 @@ btn2.addEventListener('click',function(){
     if(btn2.innerHTML=='Start'){
         check=1;
         if(stoptime == true){
-            current = new Date()
-            ct = current.toLocaleTimeString([],{hour12:false});
+            
             stoptime = false;
             timerCycle();
             btn1.innerHTML = 'Lap';
@@ -28,6 +27,7 @@ btn2.addEventListener('click',function(){
             btn2.style.fontWeight = 'bold';
             btn2.style.fontSize = '20px';
             btn2.style.border = '1px red solid';
+            btn2.style.borderStyle = '5px double solid red';
         }
     }
     else if(btn2.innerHTML=='Stop'){
@@ -36,6 +36,10 @@ btn2.addEventListener('click',function(){
         }
         btn1.innerHTML = 'reset';
         btn2.innerHTML = 'Start';
+        btn2.style.backgroundColor = 'gray';
+        btn2.style.color = 'white';
+        btn2.style.fontWeight = 'normal';
+        btn2.style.border = '0px';
         btn1.style.fontSize = '20px';
     }
 
@@ -44,23 +48,22 @@ btn2.addEventListener('click',function(){
 
 btn1.addEventListener('click',function(){
     if(btn1.innerHTML=='Lap'){
-        if(ct==0){
-            para.style.display = 'none';
-        }
-        else if(check==1){
+        
+        if(check==1){
             para = document.createElement("p");
             span1 = document.createElement("span");
             span2 = document.createElement("span");
+            hrline = document.createElement("HR");
             span2.style.marginLeft = "30%"
             span1.append("Lap",i);
             para.style.fontSize = '20px';
-            para.style.bottomBorder = '10px white';
             para.appendChild(span1);
-            span2.append(ct);
+            span2.append(timer.innerHTML);
             para.appendChild(span2);
             i++;
+            para.append(hrline);
             element = document.getElementsByClassName('container');
-            element[0].appendChild(para);
+            element[0].appendChild(para);;
             check=0;
         }
         
